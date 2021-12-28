@@ -130,14 +130,12 @@ namespace CourseSystemEF.Logic.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_CourseXStudents_CourseId",
                 table: "CourseXStudents",
-                column: "CourseId",
-                unique: true);
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseXStudents_StudentId",
                 table: "CourseXStudents",
-                column: "StudentId",
-                unique: true);
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subjects_Designation",

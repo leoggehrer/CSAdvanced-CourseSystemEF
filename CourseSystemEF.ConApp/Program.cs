@@ -46,8 +46,9 @@ namespace CourseSystemEF.ConApp
             var teachers = testTeachers.Generate(100);
             courseCtx.TeacherSet.AddRange(teachers);
 
+            var idx = 1;
             var testSubjects = new Faker<Subject>()
-                .RuleFor(e => e.Designation, f => string.Join(' ', f.Lorem.Words(2)));
+                .RuleFor(e => e.Designation, f => $"Subject{idx++}");
 
             var subjects = testSubjects.Generate(25);
             courseCtx.SubjectSet.AddRange(subjects);
@@ -60,8 +61,22 @@ namespace CourseSystemEF.ConApp
 
             var courses = testCourses.Generate(30);
             courseCtx.CourseSet.AddRange(courses);
-
             courseCtx.SaveChanges();
+
+            using var courseCtx2 = new Logic.DataContext.CourseDbContext();
+            var courseXStudents = new List<CourseXStudent>();
+
+            foreach (var student in students)
+            {
+                var creator = new Faker<CourseXStudent>()
+                    .RuleFor(e => e.CourseId, f => f.PickRandom(courses).Id)
+                    .RuleFor(e => e.StudentId, f => student.Id);
+                courseXStudents.AddRange(creator.Generate(1));
+            }
+
+            courseCtx2.CourseXStudentSet.AddRange(courseXStudents);
+            courseCtx2.SaveChanges();
+
         }
     }
 }

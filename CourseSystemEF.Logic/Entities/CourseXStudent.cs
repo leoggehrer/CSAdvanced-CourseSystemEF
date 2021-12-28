@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseSystemEF.Logic.Entities
 {
     [Table("CourseXStudents")]
+    [Index(nameof(CourseId), IsUnique = false)]
+    [Index(nameof(StudentId), IsUnique = false)]
     public class CourseXStudent : EntityObject
     {
         public int CourseId { get; set; }

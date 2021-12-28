@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseSystemEF.Logic.Migrations
 {
     [DbContext(typeof(CourseDbContext))]
-    [Migration("20211228110252_InitDb")]
+    [Migration("20211228191059_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,11 +86,9 @@ namespace CourseSystemEF.Logic.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId")
-                        .IsUnique();
+                    b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("StudentId");
 
                     b.ToTable("CourseXStudents");
                 });
@@ -188,7 +186,7 @@ namespace CourseSystemEF.Logic.Migrations
 
             modelBuilder.Entity("CourseSystemEF.Logic.Entities.Course", b =>
                 {
-                    b.HasOne("CourseSystemEF.Logic.Entities.Subject", null)
+                    b.HasOne("CourseSystemEF.Logic.Entities.Subject", "Subject")
                         .WithMany("Courses")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -199,6 +197,8 @@ namespace CourseSystemEF.Logic.Migrations
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Subject");
 
                     b.Navigation("Teacher");
                 });

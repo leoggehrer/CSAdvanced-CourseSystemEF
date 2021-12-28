@@ -22,5 +22,13 @@ namespace CourseSystemEF.Logic.DataContext
 
             base.OnConfiguring(optionsBuilder);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //var cXsBuilder = modelBuilder.Entity<Entities.CourseXStudent>();
+
+            //cXsBuilder.HasIndex(e => new {e.CourseId, e.StudentId}, "IX_CpourseeAndStudent").IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

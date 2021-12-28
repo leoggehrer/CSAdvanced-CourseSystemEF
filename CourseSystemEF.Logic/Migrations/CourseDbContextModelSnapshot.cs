@@ -84,11 +84,9 @@ namespace CourseSystemEF.Logic.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId")
-                        .IsUnique();
+                    b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentId")
-                        .IsUnique();
+                    b.HasIndex("StudentId");
 
                     b.ToTable("CourseXStudents");
                 });
@@ -186,7 +184,7 @@ namespace CourseSystemEF.Logic.Migrations
 
             modelBuilder.Entity("CourseSystemEF.Logic.Entities.Course", b =>
                 {
-                    b.HasOne("CourseSystemEF.Logic.Entities.Subject", null)
+                    b.HasOne("CourseSystemEF.Logic.Entities.Subject", "Subject")
                         .WithMany("Courses")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -197,6 +195,8 @@ namespace CourseSystemEF.Logic.Migrations
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Subject");
 
                     b.Navigation("Teacher");
                 });
