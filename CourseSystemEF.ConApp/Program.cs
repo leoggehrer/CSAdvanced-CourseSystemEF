@@ -73,7 +73,6 @@ namespace CourseSystemEF.ConApp
                     .RuleFor(e => e.StudentId, f => student.Id);
                 courseXStudents.AddRange(creator.Generate(1));
             }
-
             courseCtx2.CourseXStudentSet.AddRange(courseXStudents);
             courseCtx2.SaveChanges();
 

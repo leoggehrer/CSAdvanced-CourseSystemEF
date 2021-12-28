@@ -24,9 +24,9 @@ namespace CourseSystemEF.Logic.DataContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //var cXsBuilder = modelBuilder.Entity<Entities.CourseXStudent>();
+            var cXsBuilder = modelBuilder.Entity<Entities.CourseXStudent>();
 
-            //cXsBuilder.HasIndex(e => new {e.CourseId, e.StudentId}, "IX_CpourseeAndStudent").IsUnique();
+            cXsBuilder.HasIndex(e => new { e.CourseId, e.StudentId }, "UX_CoursesAndStudents").IsUnique();
 
             base.OnModelCreating(modelBuilder);
         }

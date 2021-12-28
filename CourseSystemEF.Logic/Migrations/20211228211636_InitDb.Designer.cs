@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseSystemEF.Logic.Migrations
 {
     [DbContext(typeof(CourseDbContext))]
-    [Migration("20211228191059_InitDb")]
+    [Migration("20211228211636_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,9 @@ namespace CourseSystemEF.Logic.Migrations
                     b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
+
+                    b.HasIndex(new[] { "CourseId", "StudentId" }, "IX_CpourseeAndStudent")
+                        .IsUnique();
 
                     b.ToTable("CourseXStudents");
                 });

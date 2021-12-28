@@ -88,6 +88,9 @@ namespace CourseSystemEF.Logic.Migrations
 
                     b.HasIndex("StudentId");
 
+                    b.HasIndex(new[] { "CourseId", "StudentId" }, "IX_CpourseeAndStudent")
+                        .IsUnique();
+
                     b.ToTable("CourseXStudents");
                 });
 
